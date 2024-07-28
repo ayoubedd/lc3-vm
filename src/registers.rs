@@ -17,7 +17,7 @@ pub struct Registers {
     pub r7: u16,
     pub r8: u16,
     pub pc: u16,
-    pub psr: u16
+    pub psr: u16,
 }
 
 impl Registers {
@@ -93,5 +93,4 @@ impl Registers {
 
         false
     }
-
 }

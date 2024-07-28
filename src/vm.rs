@@ -30,7 +30,6 @@ pub enum Opcode {
     INVLD = 1337, /* execute trap */
 }
 
-
 impl VM {
     pub const PC_START: u16 = 0x3000;
 

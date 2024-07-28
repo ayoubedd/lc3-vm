@@ -9,10 +9,12 @@ pub fn add(instr: u16, vm: &mut VM) {
     let value;
 
     match mode {
-        true => { // imediate mode
+        true => {
+            // imediate mode
             value = instr & 2_u16.pow(5) - 1;
         }
-        false => { // register mode
+        false => {
+            // register mode
             let sr2 = instr & 7;
             value = vm.registers.get(sr2);
         }

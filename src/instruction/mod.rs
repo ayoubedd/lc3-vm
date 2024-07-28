@@ -1,13 +1,13 @@
 mod add;
+mod and;
+mod br;
+mod jmp;
 mod ld;
 mod st;
-mod br;
-mod and;
-mod jmp;
 
 pub use add::*;
+pub use and::*;
+pub use br::*;
+pub use jmp::*;
 pub use ld::*;
 pub use st::*;
-pub use br::*;
-pub use and::*;
-pub use jmp::*;

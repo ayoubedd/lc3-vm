@@ -78,7 +78,7 @@ impl VM {
                 Opcode::ST => instruction::st(instr, self),
                 Opcode::JSR => instruction::jsr(instr, self),
                 Opcode::AND => instruction::and(instr, self),
-                Opcode::LDR => todo!(),
+                Opcode::LDR => instruction::ldr(instr, self),
                 Opcode::STR => todo!(),
                 Opcode::RTI => todo!(),
                 Opcode::NOT => todo!(),

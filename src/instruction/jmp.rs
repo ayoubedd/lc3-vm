@@ -1,8 +1,14 @@
 use crate::vm::VM;
 
 pub fn jmp(instr: u16, vm: &mut VM) {
-    println!("jmp");
 
     let base_register = (instr & (7 << 6)) >> 6;
-    vm.registers.pc = vm.registers.get(base_register);
+
+    if base_register == 0b111 {
+        println!("ret");
+        vm.registers.pc = vm.registers.r7;
+    } else {
+        println!("jmp");
+        vm.registers.pc = vm.registers.get(base_register);
+    }
 }

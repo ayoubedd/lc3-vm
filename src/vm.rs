@@ -82,7 +82,7 @@ impl VM {
                 Opcode::STR => instruction::str(instr, self),
                 Opcode::RTI => todo!(),
                 Opcode::NOT => instruction::not(instr, self),
-                Opcode::LDI => todo!(),
+                Opcode::LDI => instruction::ldi(instr, self),
                 Opcode::STI => instruction::sti(instr, self),
                 Opcode::JMP => instruction::jmp(instr, self),
                 Opcode::RES => todo!(),
@@ -96,7 +96,7 @@ impl VM {
             }
 
             dbg!(&self.registers);
-            // dbg!(&self.memory);
+            dbg!(&self.memory);
 
             println!("-------");
             std::thread::sleep(Duration::from_millis(500));

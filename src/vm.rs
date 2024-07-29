@@ -86,7 +86,7 @@ impl VM {
                 Opcode::STI => instruction::sti(instr, self),
                 Opcode::JMP => instruction::jmp(instr, self),
                 Opcode::RES => todo!(),
-                Opcode::LEA => todo!(),
+                Opcode::LEA => instruction::lea(instr, self),
                 Opcode::TRAP => todo!(),
                 Opcode::INVLD => todo!(),
             };

@@ -1,4 +1,4 @@
-use std::process::exit;
+use std::{io::Read, process::exit};
 
 use crate::vm::VM;
 
@@ -10,7 +10,10 @@ pub fn trap(instr: u16, vm: &mut VM) {
     match trapvect {
         0x20 => {
             // GETC
-            // println!("getc");
+            let mut stdin = std::io::stdin();
+            let mut buff = [0_u8; 1];
+            stdin.read_exact(&mut buff).unwrap();
+            vm.registers.r0 = buff[0] as u16;
         }
         0x21 => {
             // OUT

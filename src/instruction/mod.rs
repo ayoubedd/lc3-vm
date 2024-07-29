@@ -7,6 +7,8 @@ mod ld;
 mod ldr;
 mod not;
 mod st;
+mod sti;
+mod str;
 
 pub use add::*;
 pub use and::*;
@@ -17,3 +19,5 @@ pub use ld::*;
 pub use ldr::*;
 pub use not::*;
 pub use st::*;
+pub use sti::*;
+pub use str::*;

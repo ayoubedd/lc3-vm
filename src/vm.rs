@@ -76,7 +76,7 @@ impl VM {
                 Opcode::BR => instruction::br(instr, self),
                 Opcode::LD => instruction::ld(instr, self),
                 Opcode::ST => instruction::st(instr, self),
-                Opcode::JSR => todo!(),
+                Opcode::JSR => instruction::jsr(instr, self),
                 Opcode::AND => instruction::and(instr, self),
                 Opcode::LDR => todo!(),
                 Opcode::STR => todo!(),
@@ -91,7 +91,7 @@ impl VM {
                 Opcode::INVLD => todo!(),
             };
 
-            if opcode != Opcode::JMP || opcode == Opcode::BR {
+            if opcode != Opcode::JMP && opcode != Opcode::BR && opcode != Opcode::JSR {
                 self.registers.pc += 1;
             }
 

@@ -87,7 +87,7 @@ impl VM {
                 Opcode::JMP => instruction::jmp(instr, self),
                 Opcode::RES => todo!(),
                 Opcode::LEA => instruction::lea(instr, self),
-                Opcode::TRAP => todo!(),
+                Opcode::TRAP => instruction::trap(instr, self),
                 Opcode::INVLD => todo!(),
             };
 
@@ -95,11 +95,11 @@ impl VM {
                 self.registers.pc += 1;
             }
 
-            dbg!(&self.registers);
-            dbg!(&self.memory);
+            // dbg!(&self.registers);
+            // dbg!(&self.memory);
 
-            println!("-------");
-            std::thread::sleep(Duration::from_millis(500));
+            // println!("-------");
+            std::thread::sleep(Duration::from_millis(1000));
         }
     }
 

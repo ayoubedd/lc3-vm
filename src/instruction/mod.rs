@@ -11,6 +11,7 @@ mod not;
 mod st;
 mod sti;
 mod str;
+mod trap;
 
 pub use add::*;
 pub use and::*;
@@ -25,3 +26,4 @@ pub use not::*;
 pub use st::*;
 pub use sti::*;
 pub use str::*;
+pub use trap::*;

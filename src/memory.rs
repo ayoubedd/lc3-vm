@@ -1,4 +1,4 @@
-pub const MEMORY_SIZE: usize = 1 << 4;
+pub const MEMORY_SIZE: usize = 1 << 16;
 
 #[derive(Debug)]
 pub struct Memory {

@@ -81,7 +81,7 @@ impl VM {
                 Opcode::LDR => instruction::ldr(instr, self),
                 Opcode::STR => todo!(),
                 Opcode::RTI => todo!(),
-                Opcode::NOT => todo!(),
+                Opcode::NOT => instruction::not(instr, self),
                 Opcode::LDI => todo!(),
                 Opcode::STI => todo!(),
                 Opcode::JMP => instruction::jmp(instr, self),

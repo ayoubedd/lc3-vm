@@ -5,6 +5,7 @@ mod jmp;
 mod jsr;
 mod ld;
 mod ldr;
+mod not;
 mod st;
 
 pub use add::*;
@@ -14,4 +15,5 @@ pub use jmp::*;
 pub use jsr::*;
 pub use ld::*;
 pub use ldr::*;
+pub use not::*;
 pub use st::*;

@@ -8,4 +8,5 @@ pub fn lea(instr: u16, vm: &mut VM) {
     let value = pc + pc_offset;
 
     vm.registers.set(dst_r, value);
+    vm.setcc(value);
 }

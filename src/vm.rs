@@ -7,6 +7,7 @@ use std::time::Duration;
 pub struct VM {
     pub memory: Memory,
     pub registers: Registers,
+    pub branched: bool,
 }
 
 #[derive(Debug, PartialEq)]
@@ -37,6 +38,7 @@ impl VM {
         VM {
             memory: Memory::new(),
             registers: Registers::new(),
+            branched: false,
         }
     }
 
@@ -91,15 +93,23 @@ impl VM {
                 Opcode::INVLD => todo!(),
             };
 
-            if opcode != Opcode::JMP && opcode != Opcode::BR && opcode != Opcode::JSR {
+            if opcode != Opcode::JMP && opcode != Opcode::JSR {
                 self.registers.pc += 1;
             }
+
+            if opcode == Opcode::BR {
+                if self.branched == true {
+                    self.registers.pc -= 1;
+                }
+            }
+
+            // dbg!(opcode);
 
             // dbg!(&self.registers);
             // dbg!(&self.memory);
 
             // println!("-------");
-            std::thread::sleep(Duration::from_millis(1000));
+            std::thread::sleep(Duration::from_millis(200));
         }
     }
 
@@ -124,6 +134,26 @@ impl VM {
             14 => Opcode::LEA,
             15 => Opcode::TRAP,
             _ => Opcode::INVLD,
+        }
+    }
+
+    pub fn setcc(&mut self, value: u16) {
+        println!("psr: {:b}", self.registers.psr);
+        let value = value as i16;
+        let psr = &mut self.registers.psr;
+
+        // zeroing the NPZ feild.
+        *psr = (*psr >> 3) << 3;
+
+        if value == 0 {
+            // zero
+            *psr = *psr | (1 << 1);
+        } else if value > 0 {
+            // positive
+            *psr = *psr | 1;
+        } else {
+            // negative
+            *psr = *psr | (1 << 2);
         }
     }
 }

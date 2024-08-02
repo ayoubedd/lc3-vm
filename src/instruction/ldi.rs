@@ -8,5 +8,8 @@ pub fn ldi(instr: u16, vm: &mut VM) {
     let addr_addr = (pc + pc_offset) as usize;
     let addr = vm.memory.mem[addr_addr];
 
+    let value = vm.memory.mem[addr as usize];
+
     vm.registers.set(dst_r, vm.memory.mem[addr as usize]);
+    vm.setcc(value);
 }

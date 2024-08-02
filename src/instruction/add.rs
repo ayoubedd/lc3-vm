@@ -1,7 +1,6 @@
 use crate::vm::VM;
 
 pub fn add(instr: u16, vm: &mut VM) {
-    println!("add");
     let mode: bool = (instr & 1 << 5) != 0; // mode: 1 -> immediate, 0 -> register
 
     let dr = (instr & (7 << 9)) >> 9;
@@ -23,4 +22,5 @@ pub fn add(instr: u16, vm: &mut VM) {
     let result = vm.registers.get(sr1) + value;
 
     vm.registers.set(dr, result);
+    vm.setcc(result);
 }

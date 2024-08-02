@@ -22,4 +22,5 @@ pub fn and(instr: u16, vm: &mut VM) {
     let result = vm.registers.get(sr1) & r_value;
 
     vm.registers.set(dr, result);
+    vm.setcc(result);
 }

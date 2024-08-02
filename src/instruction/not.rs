@@ -6,4 +6,5 @@ pub fn not(instr: u16, vm: &mut VM) {
 
     let value = vm.registers.get(src_r);
     vm.registers.set(dst_r, !value);
+    vm.setcc(value);
 }

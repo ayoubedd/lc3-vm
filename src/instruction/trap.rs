@@ -36,20 +36,16 @@ pub fn trap(instr: u16, vm: &mut VM) {
         }
         0x23 => {
             // IN
-            // println!("in");
         }
         0x24 => {
             // PUTSP
-            // println!("putsp");
         }
         0x25 => {
             // HALT
-            println!("\n\nHALT!");
             exit(1);
         }
         _ => {
             // unimplemented
-            println!("UNIMPLEMENTED TRAP!");
             exit(1);
         }
     }

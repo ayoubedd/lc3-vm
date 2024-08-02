@@ -68,7 +68,7 @@ impl Registers {
         }
     }
 
-    pub fn is_negative(&self) -> bool {
+    pub fn psr_is_negative(&self) -> bool {
         if self.psr & (1 << 2) == 1 {
             return true;
         }
@@ -76,7 +76,7 @@ impl Registers {
         false
     }
 
-    pub fn is_zero(&self) -> bool {
+    pub fn psr_is_zero(&self) -> bool {
         if self.psr & (1 << 1) == 1 {
             return true;
         }
@@ -84,7 +84,7 @@ impl Registers {
         false
     }
 
-    pub fn is_positive(&self) -> bool {
+    pub fn psr_is_positive(&self) -> bool {
         if self.psr & 1 == 1 {
             return true;
         }

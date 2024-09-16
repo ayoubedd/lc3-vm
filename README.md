@@ -18,8 +18,8 @@ cargo run -- 2048.obj
 
 ## Credit & Resources
 
-[LC3 ISA](https://www.jmeiners.com/lc3-vm/supplies/lc3-isa.pdf)
-[Write your Own Virtual Machine](https://www.jmeiners.com/lc3-vm/)
+- [LC3 ISA](https://www.jmeiners.com/lc3-vm/supplies/lc3-isa.pdf)
+- [Write your Own Virtual Machine](https://www.jmeiners.com/lc3-vm/)
 
 # Licence
 

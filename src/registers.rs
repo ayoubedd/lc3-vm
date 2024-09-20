@@ -1,12 +1,4 @@
 #[derive(Debug)]
-pub enum Cond {
-    UNSET = 0,
-    POS = 1 << 0, /* P */
-    ZRO = 1 << 1, /* Z */
-    NEG = 1 << 2, /* N */
-}
-
-#[derive(Debug)]
 pub struct Registers {
     pub r0: u16,
     pub r1: u16,

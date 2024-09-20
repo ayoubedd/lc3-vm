@@ -7,7 +7,6 @@ use std::time::Duration;
 pub struct VM {
     pub memory: Memory,
     pub registers: Registers,
-    pub branched: bool,
 }
 
 #[derive(Debug, PartialEq)]
@@ -38,14 +37,12 @@ impl VM {
         VM {
             memory: Memory::new(),
             registers: Registers::new(),
-            branched: false,
         }
     }
 
     pub fn load_program(&mut self, path: &str) {
         let file = std::fs::read(path).unwrap();
         let mut rdr = Cursor::new(&file[..]);
-        // let memory = &mut self.memory.mem;
 
         let base_address = rdr.read_u16::<BigEndian>().unwrap();
         self.registers.pc = base_address;
@@ -64,13 +61,13 @@ impl VM {
     }
 
     pub fn run(&mut self) {
-        let mut pc;
-
         loop {
-            pc = self.registers.pc;
-            let instr = self.memory.read(pc);
+            let instr = self.memory.read(self.registers.pc);
+            self.registers.pc += 1;
 
             let opcode = Self::decode(instr);
+
+            dbg!(&opcode);
 
             match opcode {
                 Opcode::ADD => instruction::add(instr, self),
@@ -92,22 +89,21 @@ impl VM {
                 Opcode::INVLD => todo!(),
             };
 
-            if opcode != Opcode::JMP && opcode != Opcode::JSR {
-                self.registers.pc += 1;
-            }
+            // if opcode != Opcode::JMP && opcode != Opcode::JSR {
+            //     self.registers.pc += 1;
+            // }
 
-            if opcode == Opcode::BR {
-                if self.branched == true {
-                    self.registers.pc -= 1;
-                }
-            }
-
-            dbg!(opcode);
+            // if opcode == Opcode::BR {
+            //     if self.branched == true {
+            //         self.registers.pc -= 1;
+            //     }
+            //     self.branched = false;
+            // }
 
             dbg!(&self.registers);
             // dbg!(&self.memory);
 
-            // println!("-------");
+            println!("-------");
             std::thread::sleep(Duration::from_millis(500));
         }
     }

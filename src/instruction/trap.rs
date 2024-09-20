@@ -26,7 +26,7 @@ pub fn trap(instr: u16, vm: &mut VM) {
 
             let mut addr = vm.registers.r0;
             loop {
-                let value = vm.memory.mem[addr as usize];
+                let value = vm.memory.read(addr);
                 if value == 0x0 {
                     break;
                 }

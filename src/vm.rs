@@ -45,17 +45,17 @@ impl VM {
     pub fn load_program(&mut self, path: &str) {
         let file = std::fs::read(path).unwrap();
         let mut rdr = Cursor::new(&file[..]);
-        let memory = &mut self.memory.mem;
+        // let memory = &mut self.memory.mem;
 
         let base_address = rdr.read_u16::<BigEndian>().unwrap();
         self.registers.pc = base_address;
-        let mut index: usize = self.registers.pc as usize;
+        let mut index = self.registers.pc;
 
         loop {
             let one = rdr.read_u16::<BigEndian>();
             match one {
                 Ok(data) => {
-                    memory[index] = data;
+                    self.memory.write(index, data);
                     index += 1;
                 }
                 Err(_) => break,
@@ -64,12 +64,11 @@ impl VM {
     }
 
     pub fn run(&mut self) {
-        let memory = self.memory.mem;
         let mut pc;
 
         loop {
-            pc = self.registers.pc as usize;
-            let instr = memory[pc];
+            pc = self.registers.pc;
+            let instr = self.memory.read(pc);
 
             let opcode = Self::decode(instr);
 
@@ -103,13 +102,13 @@ impl VM {
                 }
             }
 
-            // dbg!(opcode);
+            dbg!(opcode);
 
-            // dbg!(&self.registers);
+            dbg!(&self.registers);
             // dbg!(&self.memory);
 
             // println!("-------");
-            std::thread::sleep(Duration::from_millis(200));
+            std::thread::sleep(Duration::from_millis(500));
         }
     }
 
@@ -138,7 +137,7 @@ impl VM {
     }
 
     pub fn setcc(&mut self, value: u16) {
-        println!("psr: {:b}", self.registers.psr);
+        // println!("psr: {:b}", self.registers.psr);
         let value = value as i16;
         let psr = &mut self.registers.psr;
 

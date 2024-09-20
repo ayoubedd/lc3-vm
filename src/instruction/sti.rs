@@ -5,7 +5,7 @@ pub fn sti(instr: u16, vm: &mut VM) {
     let pc_offset = instr & (2_u16.pow(10) - 1);
 
     let pc = vm.registers.pc + 1;
-    let dst_addr = (pc + pc_offset) as usize;
+    let dst_addr = pc + pc_offset;
 
-    vm.memory.mem[dst_addr] = vm.registers.get(src_r);
+    vm.memory.write(dst_addr, vm.registers.get(src_r));
 }

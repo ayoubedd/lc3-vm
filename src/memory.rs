@@ -2,7 +2,7 @@ pub const MEMORY_SIZE: usize = 1 << 16;
 
 #[derive(Debug)]
 pub struct Memory {
-    pub mem: [u16; MEMORY_SIZE],
+    mem: [u16; MEMORY_SIZE],
 }
 
 impl Memory {
@@ -20,5 +20,9 @@ impl Memory {
 
     pub fn read(&self, addr: u16) -> u16 {
         self.mem[addr as usize]
+    }
+
+    pub fn write(&mut self, addr: u16, value: u16) {
+        self.mem[addr as usize] = value;
     }
 }

@@ -5,7 +5,7 @@ pub fn str(instr: u16, vm: &mut VM) {
     let base_r = (instr & 7 << 6) >> 6;
     let offset = instr & (2_u16.pow(6) - 1);
 
-    let dst_addr = (vm.registers.get(base_r) + offset) as usize;
+    let dst_addr = vm.registers.get(base_r) + offset;
 
-    vm.memory.mem[dst_addr] = vm.registers.get(src_r);
+    vm.memory.write(dst_addr, vm.registers.get(src_r));
 }

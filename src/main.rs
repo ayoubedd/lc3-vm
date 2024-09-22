@@ -1,6 +1,7 @@
 mod instruction;
 mod memory;
 mod registers;
+mod utilities;
 mod vm;
 use std::env::args;
 

@@ -67,7 +67,7 @@ impl VM {
 
             let opcode = Self::decode(instr);
 
-            dbg!(&opcode);
+            // dbg!(&opcode);
 
             match opcode {
                 Opcode::ADD => instruction::add(instr, self),
@@ -89,22 +89,11 @@ impl VM {
                 Opcode::INVLD => todo!(),
             };
 
-            // if opcode != Opcode::JMP && opcode != Opcode::JSR {
-            //     self.registers.pc += 1;
-            // }
-
-            // if opcode == Opcode::BR {
-            //     if self.branched == true {
-            //         self.registers.pc -= 1;
-            //     }
-            //     self.branched = false;
-            // }
-
-            dbg!(&self.registers);
+            // dbg!(&self.registers);
             // dbg!(&self.memory);
 
-            println!("-------");
-            std::thread::sleep(Duration::from_millis(500));
+            // std::thread::sleep(Duration::from_millis(500));
+            // println!("-------");
         }
     }
 

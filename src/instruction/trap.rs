@@ -36,9 +36,26 @@ pub fn trap(instr: u16, vm: &mut VM) {
         }
         0x23 => {
             // IN
+            println!("Enter a charater: ");
+            let mut stdin = std::io::stdin();
+            let mut buff = [0_u8; 1];
+            stdin.read_exact(&mut buff).unwrap();
+            vm.registers.r0 = buff[0] as u16;
         }
         0x24 => {
             // PUTSP
+            let mut addr = vm.registers.r0;
+            loop {
+                let value = vm.memory.read(addr);
+                let one = value & 2_u16.pow(8);
+                let two = value & 2_u16.pow(8) << 8;
+                print!("{}", char::from(one as u8));
+                if two == 0x0 {
+                    break;
+                }
+                print!("{}", char::from(one as u8));
+                addr += 1;
+            }
         }
         0x25 => {
             // HALT

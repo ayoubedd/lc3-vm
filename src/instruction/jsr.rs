@@ -1,4 +1,4 @@
-use crate::vm::VM;
+use crate::{utilities::sign_extend, vm::VM};
 
 pub fn jsr(instr: u16, vm: &mut VM) {
     let mode: bool = (instr & 1 << 11) != 0; // mode: 1 -> immediate, 0 -> register
@@ -11,7 +11,8 @@ pub fn jsr(instr: u16, vm: &mut VM) {
     match mode {
         true => {
             // immediate mode
-            addr = instr & 2_u16.pow(10) - 1;
+            addr = instr & 2_u16.pow(11) - 1;
+            addr = sign_extend(addr, 11);
             addr += vm.registers.pc;
         }
         false => {

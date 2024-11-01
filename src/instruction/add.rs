@@ -19,7 +19,7 @@ pub fn add(instr: u16, vm: &mut VM) {
         }
     }
 
-    let sign_extended = sign_extend(value, 16 - 5);
+    let sign_extended = sign_extend(value, 5);
     let result = vm.registers.get(sr1) + sign_extended;
 
     vm.registers.set(dr, result);
